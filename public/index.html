@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sholate Motors | Luxury Performance Cars</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark-theme">
+  <nav>
+    <h1>Sholate Motors</h1>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+  <div class="hero-content">
+    <h2>Experience Pure Performance</h2>
+    <p>Explore the world of Mercedes-AMG and S-Class — precision, luxury, and power.</p>
+  </div>
+</section>
+
+  <footer>
+    <p>© 2025 Sholate Motors. All Rights Reserved.</p>
+  </footer>
+
+<script>
+  const heroImages = [
+    "https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg",
+    "https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg",
+    "https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg",
+    "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=vJd39MMz5g8Q7kNvwG-VQgb&_nc_oc=AdkHiNQtBXubLOFO-Gqn6OXdrb2F1EPFDboDu5lFGBXgn7uyFo4Izj6jkuI89ZaiQkg&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=JHcPQ17inMxv-WsmsmmVyg&oh=00_AfeDAPXypFsDtSsEdK2UcsLGMltZwa5w6cx-ZpqfSoZ6Fg&oe=68FF5403"
+  ];
+
+  let heroIndex = 0;
+  const heroSection = document.querySelector(".hero");
+
+  function changeHeroBackground() {
+    heroIndex = (heroIndex + 1) % heroImages.length;
+    heroSection.style.opacity = 0;
+    setTimeout(() => {
+      heroSection.style.backgroundImage = `url('${heroImages[heroIndex]}')`;
+      heroSection.style.opacity = 1;
+    }, 500);
+  }
+
+  setInterval(changeHeroBackground, 5000);
+</script>
+</body>
+</html>
