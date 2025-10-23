@@ -7,58 +7,76 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-theme">
+
+  <!-- Navbar -->
   <nav>
-  <h1>Sholate Motors</h1>
-  <div class="menu-toggle" id="mobile-menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </div>
-  <ul class="nav-list">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="inventory.html">Inventory</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-  <section class="hero">
-  <div class="hero-content">
-    <h2>Experience Pure Performance</h2>
-    <p>Explore the world of Mercedes-AMG and S-Class — precision, luxury, and power.</p>
-  </div>
-
-<section class="gallery-section">
-  <h2>Gallery</h2>
-  <div class="gallery-container">
-    <button class="prev">&#10094;</button>
-    <div class="gallery">
-      <img src="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg" alt="Car 1">
-      <img src="https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg" alt="Car 2">
-      <img src="https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg" alt="Car 3">
-      <img src="https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=vJd39MMz5g8Q7kNvwG-VQgb&_nc_oc=AdkHiNQtBXubLOFO-Gqn6OXdrb2F1EPFDboDu5lFGBXgn7uyFo4Izj6jkuI89ZaiQkg&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=JHcPQ17inMxv-WsmsmmVyg&oh=00_AfeDAPXypFsDtSsEdK2UcsLGMltZwa5w6cx-ZpqfSoZ6Fg&oe=68FF5403" alt="Car 4">
+    <h1>Sholate Motors</h1>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
-    <button class="next">&#10095;</button>
-  </div>
-</section>
+    <ul class="nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
 
-  <footer>
-    <p>© 2025 Sholate Motors. All Rights Reserved.</p>
-  </footer>
-  
-  <!-- Inline script for hero image change -->
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Experience Pure Performance</h2>
+      <p>Explore the world of Mercedes-AMG and S-Class — precision, luxury, and power.</p>
+    </div>
+  </section>
+
+  <!-- Featured Gallery -->
+  <section class="page-content">
+    <h2>Gallery</h2>
+    <div class="gallery-slider">
+      <button class="arrow-btn prev">&#10094;</button>
+      <img id="gallery-image" src="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg" alt="Car Gallery">
+      <button class="arrow-btn next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Featured Inventory -->
+  <section class="page-content">
+    <h2>Featured Inventory</h2>
+    <div class="car-grid">
+      <div class="car-card" data-name="AMG G63" data-price="$180,000" data-img="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg">
+        <img src="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg" alt="AMG G63">
+        <h3>AMG G63</h3>
+      </div>
+      <div class="car-card" data-name="AMG GT" data-price="$200,000" data-img="https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg">
+        <img src="https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg" alt="AMG GT">
+        <h3>AMG GT</h3>
+      </div>
+      <div class="car-card" data-name="S-Class 580" data-price="$160,000" data-img="https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg">
+        <img src="https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg" alt="S-Class 580">
+        <h3>S-Class 580</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>© 2025 Sholate Motors. All Rights Reserved.</footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
   <script>
+    // ===== Hero Slider =====
     const heroImages = [
       "https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg",
       "https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg",
       "https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg",
-      "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=vJd39MMz5g8Q7kNvwG-VQgb&_nc_oc=AdkHiNQtBXubLOFO-Gqn6OXdrb2F1EPFDboDu5lFGBXgn7uyFo4Izj6jkuI89ZaiQkg&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=JHcPQ17inMxv-WsmsmmVyg&oh=00_AfeDAPXypFsDtSsEdK2UcsLGMltZwa5w6cx-ZpqfSoZ6Fg&oe=68FF5403"
+      "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg"
     ];
-
     let heroIndex = 0;
     const heroSection = document.querySelector(".hero");
-
     function changeHeroBackground() {
       heroIndex = (heroIndex + 1) % heroImages.length;
       heroSection.style.opacity = 0;
@@ -67,11 +85,38 @@
         heroSection.style.opacity = 1;
       }, 500);
     }
-
     setInterval(changeHeroBackground, 5000);
-  </script>
 
-  <!-- Link to external script for gallery and mobile menu -->
-  <script src="script.js"></script>
+    // ===== Gallery Slider =====
+    const galleryImages = [
+      "https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg",
+      "https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg",
+      "https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg",
+      "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg"
+    ];
+    let galleryIndex = 0;
+    const galleryImg = document.getElementById("gallery-image");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+
+    function showGallery(i) {
+      galleryImg.style.opacity = 0;
+      setTimeout(() => {
+        galleryImg.src = galleryImages[i];
+        galleryImg.style.opacity = 1;
+      }, 300);
+    }
+
+    prevBtn.addEventListener("click", () => { galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length; showGallery(galleryIndex); resetGalleryAuto(); });
+    nextBtn.addEventListener("click", () => { galleryIndex = (galleryIndex + 1) % galleryImages.length; showGallery(galleryIndex); resetGalleryAuto(); });
+
+    let galleryInterval = setInterval(() => { galleryIndex = (galleryIndex + 1) % galleryImages.length; showGallery(galleryIndex); }, 5000);
+    function resetGalleryAuto() {
+      clearInterval(galleryInterval);
+      galleryInterval = setInterval(() => { galleryIndex = (galleryIndex + 1) % galleryImages.length; showGallery(galleryIndex); }, 5000);
+    }
+
+    showGallery(galleryIndex);
+  </script>
 </body>
 </html>

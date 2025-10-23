@@ -8,6 +8,7 @@
 </head>
 <body class="light-theme">
 
+  <!-- Navbar -->
   <nav>
     <h1>Sholate Motors</h1>
     <div class="menu-toggle" id="mobile-menu">
@@ -24,17 +25,15 @@
     </ul>
   </nav>
 
-  <main>
-    <section class="page-content">
-      <h2>Gallery</h2>
-
-      <div class="gallery-container">
-        <button class="arrow-btn prev">&#10094;</button>
-        <img id="gallery-image" src="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg" alt="Car Gallery">
-        <button class="arrow-btn next">&#10095;</button>
-      </div>
-    </section>
-  </main>
+  <!-- Gallery Section -->
+  <section class="page-content">
+    <h2>Gallery</h2>
+    <div class="gallery-slider">
+      <button class="arrow-btn prev">&#10094;</button>
+      <img id="gallery-image" src="https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg" alt="Car Gallery">
+      <button class="arrow-btn next">&#10095;</button>
+    </div>
+  </section>
 
   <footer>© 2025 Sholate Motors. All Rights Reserved.</footer>
 
@@ -43,9 +42,8 @@
       "https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg",
       "https://news.dupontregistry.com/wp-content/uploads/2017/10/RENNtech_AMG_GT_R_Orange_Beast_DuPont_02.jpg",
       "https://route66cars.in/storage/app/uploads/public/63e/222/975/63e222975451a182488607.jpeg",
-      "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=vJd39MMz5g8Q7kNvwG-VQgb&_nc_oc=AdkHiNQtBXubLOFO-Gqn6OXdrb2F1EPFDboDu5lFGBXgn7uyFo4Izj6jkuI89ZaiQkg&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=JHcPQ17inMxv-WsmsmmVyg&oh=00_AfeDAPXypFsDtSsEdK2UcsLGMltZwa5w6cx-ZpqfSoZ6Fg&oe=68FF5403"
+      "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/518328215_3150368025118971_5709927890107397722_n.jpg"
     ];
-
     let index = 0;
     const imgElement = document.getElementById("gallery-image");
     const prevBtn = document.querySelector(".prev");
@@ -59,35 +57,17 @@
       }, 300);
     }
 
-    prevBtn.addEventListener("click", () => {
-      index = (index - 1 + images.length) % images.length;
-      showImage(index);
-      resetAutoSlide();
-    });
+    prevBtn.addEventListener("click", () => { index = (index - 1 + images.length) % images.length; showImage(index); resetAutoSlide(); });
+    nextBtn.addEventListener("click", () => { index = (index + 1) % images.length; showImage(index); resetAutoSlide(); });
 
-    nextBtn.addEventListener("click", () => {
-      index = (index + 1) % images.length;
-      showImage(index);
-      resetAutoSlide();
-    });
-
-    // Auto-slide every 5 seconds
-    let slideInterval = setInterval(() => {
-      index = (index + 1) % images.length;
-      showImage(index);
-    }, 5000);
+    let slideInterval = setInterval(() => { index = (index + 1) % images.length; showImage(index); }, 5000);
 
     function resetAutoSlide() {
       clearInterval(slideInterval);
-      slideInterval = setInterval(() => {
-        index = (index + 1) % images.length;
-        showImage(index);
-      }, 5000);
+      slideInterval = setInterval(() => { index = (index + 1) % images.length; showImage(index); }, 5000);
     }
 
-    // Initialize
     showImage(index);
   </script>
-
 </body>
 </html>

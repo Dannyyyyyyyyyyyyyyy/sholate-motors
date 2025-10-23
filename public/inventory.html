@@ -5,112 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inventory | Sholate Motors</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* ===== Inventory Page Styling ===== */
-    .car-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .car-card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-    }
-
-    .car-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-    }
-
-    .car-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 1px solid #ddd;
-      transition: transform 0.3s ease;
-    }
-
-    .car-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .car-card h3 {
-      color: #e0b973;
-      margin: 15px 0 5px;
-    }
-
-    .car-card p {
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    /* ===== Modal ===== */
-    .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 1000; 
-      padding-top: 60px; 
-      left: 0;
-      top: 0;
-      width: 100%; 
-      height: 100%; 
-      overflow: auto; 
-      background-color: rgba(0,0,0,0.8);
-    }
-
-    .modal-content {
-      margin: auto;
-      background: #111;
-      padding: 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 700px;
-      color: #fff;
-      text-align: center;
-      position: relative;
-    }
-
-    .modal-content img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .modal-content h2 {
-      margin-top: 15px;
-      color: #e0b973;
-    }
-
-    .modal-content p {
-      margin: 10px 0;
-      font-size: 1.2em;
-    }
-
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #fff;
-      font-size: 2em;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .car-card img { height: 150px; }
-      .modal-content img { height: 250px; }
-    }
-  </style>
 </head>
 <body class="light-theme">
 
+  <!-- Navbar -->
   <nav>
     <h1>Sholate Motors</h1>
     <div class="menu-toggle" id="mobile-menu">
@@ -127,6 +25,7 @@
     </ul>
   </nav>
 
+  <!-- Inventory Grid -->
   <section class="page-content">
     <h2>Our Inventory</h2>
     <div class="car-grid">
@@ -145,7 +44,7 @@
     </div>
   </section>
 
-  <!-- ===== Modal ===== -->
+  <!-- Modal -->
   <div id="carModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -155,42 +54,8 @@
     </div>
   </div>
 
-  <footer>© 2025 Sholate Motors. All rights reserved.</footer>
+  <footer>© 2025 Sholate Motors. All Rights Reserved.</footer>
 
-  <script>
-    // ===== Mobile Navbar Toggle =====
-    const menu = document.querySelector('#mobile-menu');
-    const navList = document.querySelector('.nav-list');
-
-    menu.addEventListener('click', () => {
-      menu.classList.toggle('is-active');
-      navList.classList.toggle('active');
-    });
-
-    // ===== Modal Logic =====
-    const modal = document.getElementById("carModal");
-    const modalImg = document.getElementById("modal-img");
-    const modalName = document.getElementById("modal-name");
-    const modalPrice = document.getElementById("modal-price");
-    const closeBtn = document.querySelector(".close");
-
-    const carCards = document.querySelectorAll(".car-card");
-    carCards.forEach(card => {
-      card.addEventListener("click", () => {
-        modal.style.display = "block";
-        modalImg.src = card.dataset.img;
-        modalName.textContent = card.dataset.name;
-        modalPrice.textContent = `Price: ${card.dataset.price}`;
-      });
-    });
-
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) modal.style.display = "none";
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
