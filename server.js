@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+
+// Use the port provided by Elastic Beanstalk, or fallback to 3000 for local testing
+const PORT = process.env.PORT || 3000;
 
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,5 +31,5 @@ app.get('/contact', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
