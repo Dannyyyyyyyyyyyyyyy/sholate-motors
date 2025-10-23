@@ -5,13 +5,10 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* ===== Dark Theme ===== */
+/* ===== Dark & Light Theme ===== */
 .dark-theme { background-color: #0d0d0d; color: #f0f0f0; }
-
-/* ===== Light Theme ===== */
 .light-theme { background-color: #f9f9f9; color: #222; }
 
-/* ===== Navbar ===== */
 /* ===== Navbar ===== */
 nav {
   display: flex;
@@ -25,116 +22,105 @@ nav {
 }
 
 nav h1 { font-size: 1.8em; color: #e0b973; }
+nav ul { list-style: none; display: flex; gap: 20px; margin: 0; }
+nav ul li a { color: #fff; text-decoration: none; transition: color 0.3s; }
+nav ul li a:hover, nav ul li a.active { color: #e0b973; }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
+/* ===== Hamburger Menu ===== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
 }
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s;
+.menu-toggle .bar {
+  height: 3px;
+  width: 25px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: 0.3s;
 }
-
-nav ul li a:hover,
-nav ul li a.active { color: #e0b973; }
 
 /* ===== Hero Section ===== */
-.hero {
-  background-image: url('https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  position: relative;
+.hero, .about-hero {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
   transition: opacity 1s ease-in-out, background-image 1s ease-in-out;
 }
 
-.hero::after {
+.hero {
+  height: 100vh;
+}
+
+.hero::after, .about-hero::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3); /* soft transparent layer */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
-.hero h2, .hero p {
+.hero h2, .hero p, .about-hero h2, .about-hero p {
   position: relative;
   z-index: 2;
 }
 
-.hero h2 {
-  font-size: 3em;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 1.3em;
-  font-weight: 400;
-}
-
-/* ===== Page Content ===== */
-.page-content {
-  padding: 80px 10%;
-  text-align: center;
-}
-
-.page-content h2 {
-  font-size: 2.5em;
-  color: #e0b973;
-  margin-bottom: 25px;
-}
-
-/* ===== About Page ===== */
-.about {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 800px;
-}
+.hero h2 { font-size: 3em; font-weight: 700; margin-bottom: 15px; }
+.hero p { font-size: 1.3em; font-weight: 400; }
 
 .about-hero {
-  background: url('https://www.mbusa.com/content/dam/mb-nafta/us/myco/my24/s/sedan/class-page/2024-S-SEDAN-CT-1-DR.jpg') center/cover no-repeat;
   height: 60vh;
-  display: flex;
+  color: #fff;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  position: relative;
-}
-
-.about-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
 }
 
 .about-hero h2 {
-  position: relative;
   font-size: 3em;
-  z-index: 2;
   text-shadow: 0 4px 10px rgba(0,0,0,0.7);
 }
 
+.about-hero p {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+/* ===== About Text Section ===== */
 .about-text {
   max-width: 900px;
   margin: 40px auto;
   line-height: 1.8;
   font-size: 1.1em;
   color: #333;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* ===== Car Grid ===== */
+.about-text .card {
+  background-color: #f5f5f5;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  max-width: 350px;
+  transition: transform 0.3s;
+}
+
+.about-text .card:hover {
+  transform: translateY(-5px);
+}
+
+.about-text h3 {
+  color: #e0b973;
+  margin-bottom: 15px;
+}
+
+/* ===== Car Grid & Gallery ===== */
 .car-grid, .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -153,35 +139,10 @@ nav ul li a.active { color: #e0b973; }
   max-width: 360px;
 }
 
-.car-card:hover, .gallery-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.car-card img, .gallery-item img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-
-.car-card h3 {
-  color: #e0b973;
-  margin: 15px 0 5px;
-}
-
-.car-card p {
-  margin-bottom: 20px;
-  color: #555;
-}
-
-/* ===== Footer ===== */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #111;
-  color: #bbb;
-  font-size: 0.9em;
-}
+.car-card:hover, .gallery-item:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.car-card img, .gallery-item img { width: 100%; height: 240px; object-fit: cover; }
+.car-card h3 { color: #e0b973; margin: 15px 0 5px; }
+.car-card p { margin-bottom: 20px; color: #555; }
 
 /* ===== Gallery Slider ===== */
 .gallery-slider {
@@ -189,7 +150,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin: 50px auto;
 }
 
 .gallery-slider img {
@@ -202,9 +163,7 @@ footer {
   transition: transform 0.4s ease-in-out;
 }
 
-.gallery-slider img:hover {
-  transform: scale(1.02);
-}
+.gallery-slider img:hover { transform: scale(1.02); }
 
 .gallery-slider button {
   position: absolute;
@@ -226,23 +185,12 @@ footer {
   color: #000;
 }
 
-.gallery-slider .prev {
-  left: 20px;
-}
+.prev { left: 20px; }
+.next { right: 20px; }
 
-.gallery-slider .next {
-  right: 20px;
-}
+#gallery-image { transition: opacity 0.6s ease-in-out; }
 
-#gallery-image {
-  transition: opacity 0.6s ease-in-out;
-}
-
-.dots-container {
-  text-align: center;
-  margin-top: 15px;
-}
-
+.dots-container { text-align: center; margin-top: 15px; }
 .dot {
   display: inline-block;
   width: 12px;
@@ -253,253 +201,29 @@ footer {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
+.dot.active { background-color: #e0b973; transform: scale(1.2); }
 
-.dot.active {
-  background-color: #e0b973;
-  transform: scale(1.2);
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #111;
+  color: #bbb;
+  font-size: 0.9em;
 }
+
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px 20px;
-  }
+  nav { flex-direction: column; align-items: flex-start; padding: 10px 20px; }
+  nav h1 { font-size: 1.5em; margin-bottom: 10px; }
+  nav ul { flex-direction: column; width: 100%; gap: 10px; }
+  nav ul li a { display: block; padding: 10px 0; font-size: 1em; }
 
-  nav h1 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
+  .hero { height: 60vh; }
+  .hero h2 { font-size: 1.8em; }
+  .hero p { font-size: 1em; }
 
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-  }
+  .about-text { flex-direction: column; padding: 20px; }
 
-  nav ul li a {
-    display: block;
-    padding: 10px 0;
-  }
-
-  .hero h2 {
-    font-size: 1.8em;
-  }
-
-  .hero p {
-    font-size: 1em;
-  }
-
-  .intro, .about, .gallery, .inventory {
-    padding: 40px 15px;
-    text-align: center;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* ===== Hamburger Menu ===== */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.menu-toggle .bar {
-  height: 3px;
-  width: 25px;
-  background-color: #fff;
-  margin: 4px 0;
-  transition: 0.3s;
-}
-
-@media screen and (max-width: 768px) {
-  .menu-toggle { display: flex; }
-
-  nav ul.nav-list {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #111;
-    height: calc(100vh - 70px);
-    width: 200px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 20px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  nav ul.nav-list.active { transform: translateX(0); }
-
-  nav ul.nav-list li { margin: 20px 0; }
-  nav ul.nav-list li a { font-size: 1.2em; }
-}
-
-/* Hide menu on mobile initially */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav-list {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    background-color: #111;
-    text-align: left;
-    padding-left: 20px;
-  }
-
-  .nav-list.active {
-    display: flex;
-  }
-
-  .nav-list li {
-    margin: 15px 0;
-  }
-
-  nav ul li a {
-    color: #fff;
-  }
-}
-
-/* ===== Gallery ===== */
-.gallery-section {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #111;
-  color: #fff;
-}
-
-.gallery-container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.gallery img {
-  width: 100%;
-  display: none; /* Only one image visible at a time */
-  border-radius: 10px;
-}
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  font-size: 2em;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(224, 185, 115, 0.8);
-}
-
-.prev {
-  left: 0;
-}
-
-.next {
-  right: 0;
-}
-
-/* ===== Mobile Responsiveness ===== */
-@media screen and (max-width: 768px) {
-  nav {
-    padding: 10px 20px;
-  }
-
-  nav h1 {
-    font-size: 1.5em;
-  }
-
-  nav ul li a {
-    font-size: 0.9em;
-  }
-
-  .hero h2 {
-    font-size: 1.8em;
-  }
-
-  .hero p {
-    font-size: 1em;
-  }
-
-  .hero {
-    height: 60vh; /* Reduce height for mobile */
-    background-size: cover;
-    background-position: center;
-  }
-
-  .gallery-container {
-    max-width: 100%;
-  }
-
-  .gallery img {
-    width: 100%;
-  }
-}
-
-/* Hamburger Menu */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.menu-toggle .bar {
-  height: 3px;
-  width: 25px;
-  background-color: #fff;
-  margin: 4px 0;
-  transition: 0.3s;
-}
-
-/* Navbar for mobile */
-@media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-
-  nav ul.nav-list {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #111;
-    height: calc(100vh - 70px);
-    width: 200px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 20px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  nav ul.nav-list.active {
-    transform: translateX(0);
-  }
-
-  nav ul.nav-list li {
-    margin: 20px 0;
-  }
-
-  nav ul.nav-list li a {
-    font-size: 1.2em;
-  }
+  .gallery-slider img { width: 100%; height: auto; }
 }

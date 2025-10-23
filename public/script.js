@@ -7,29 +7,6 @@ menu.addEventListener('click', () => {
   navList.classList.toggle('active');
 });
 
-// ===== Gallery Swipe for Mobile =====
-let startX = 0;
-let endX = 0;
-
-const galleryContainer = document.querySelector('.gallery');
-
-galleryContainer.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
-
-galleryContainer.addEventListener('touchend', (e) => {
-  endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) {
-    // Swipe left -> Next
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    updateGallery();
-  } else if (endX - startX > 50) {
-    // Swipe right -> Previous
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    updateGallery();
-  }
-});
-
 // ===== Hero Slider =====
 const heroImages = [
   "https://www.edmunds.com/assets/m/for-sale/a3-w1nyc7hj8lx361996/img-1-960x.jpg",
@@ -50,6 +27,7 @@ function changeHeroBackground() {
   }, 500);
 }
 
+// Auto-slide hero every 5 seconds
 setInterval(changeHeroBackground, 5000);
 
 // ===== Gallery Slider =====
@@ -58,7 +36,7 @@ const nextBtn = document.querySelector('.next');
 const prevBtn = document.querySelector('.prev');
 let currentIndex = 0;
 
-// Show only the first image
+// Function to show only the current gallery image
 function updateGallery() {
   galleryImages.forEach((img, idx) => {
     img.style.display = idx === currentIndex ? 'block' : 'none';
@@ -67,18 +45,54 @@ function updateGallery() {
 updateGallery();
 
 // Next & Previous buttons
-nextBtn.addEventListener('click', () => {
+nextBtn?.addEventListener('click', () => {
   currentIndex = (currentIndex + 1) % galleryImages.length;
   updateGallery();
+  resetAutoSlide();
 });
 
-prevBtn.addEventListener('click', () => {
+prevBtn?.addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
   updateGallery();
+  resetAutoSlide();
 });
 
-// Auto-slide every 5 seconds
-setInterval(() => {
+// Auto-slide gallery every 5 seconds
+let galleryInterval = setInterval(() => {
   currentIndex = (currentIndex + 1) % galleryImages.length;
   updateGallery();
 }, 5000);
+
+// Reset auto-slide when user clicks arrow
+function resetAutoSlide() {
+  clearInterval(galleryInterval);
+  galleryInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    updateGallery();
+  }, 5000);
+}
+
+// ===== Gallery Swipe for Mobile =====
+let startX = 0;
+let endX = 0;
+
+const galleryContainer = document.querySelector('.gallery-slider');
+
+galleryContainer?.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+galleryContainer?.addEventListener('touchend', (e) => {
+  endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) {
+    // Swipe left -> Next
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    updateGallery();
+    resetAutoSlide();
+  } else if (endX - startX > 50) {
+    // Swipe right -> Previous
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateGallery();
+    resetAutoSlide();
+  }
+});
