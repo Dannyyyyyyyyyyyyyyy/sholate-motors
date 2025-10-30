@@ -1,24 +1,33 @@
 {
   "name": "sholate-motors",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "A modern Node.js web application for Sholate Motors.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --coverage"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cars",
+    "motors",
+    "nodejs",
+    "express",
+    "aws",
+    "elastic-beanstalk"
+  ],
+  "author": "Sholate Motors Dev Team",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0"
   },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dannyyyyyyyyyyyyyyy/sholate-motors.git"
+    "url": "https://github.com/Dannyyyyyyyyyyyyyyy/sholate-motors.git"
   },
   "bugs": {
     "url": "https://github.com/Dannyyyyyyyyyyyyyyy/sholate-motors/issues"
-  },
-  "homepage": "https://github.com/Dannyyyyyyyyyyyyyyy/sholate-motors#readme",
-  "description": ""
+  }
 }
