@@ -21,15 +21,10 @@ app.get('/inventory', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'inventory.html'));
 });
 
-app.get('/gallery', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'gallery.html'));
-});
+// ✅ Only start the server if this file is run directly
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
-app.get('/contact', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'contact.html'));
-});
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// ✅ Export app for testing
+module.exports = app;

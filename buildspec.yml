@@ -1,28 +1,30 @@
 version: 0.2
 
+env:
+  variables:
+    NODE_ENV: "development"       # default environment
+
 phases:
   install:
     commands:
       - echo "Installing dependencies..."
-      - npm install
+      - npm ci
 
   pre_build:
     commands:
-      - echo "Running lint check..."
-      - npm run lint || echo "No lint script found"
+      - echo "Running tests with coverage..."
+      - npm test -- --coverage
 
   build:
     commands:
-      - echo "Building Sholate Motors application..."
-      - npm run build || echo "No build script found"
+      - echo "Building project for $NODE_ENV environment..."
+      # Example: if you have build scripts per environment
+      - if [ "$NODE_ENV" == "production" ]; then npm run build:prod; else npm run build; fi
 
   post_build:
     commands:
-      - echo "Running smoke tests..."
-      - npm test || echo "No test script found"
-      - echo "Build completed successfully on $(date)"
+      - echo "Build complete for $NODE_ENV environment!"
 
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+cache:
+  paths:
+    - node_modules/**/*     # cache dependencies to speed up next build
