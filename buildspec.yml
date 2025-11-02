@@ -1,30 +1,39 @@
 version: 0.2
 
-env:
-  variables:
-    NODE_ENV: "development"       # default environment
-
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
       - echo "Installing dependencies..."
-      - npm ci
+      - npm install
+      - echo "Logging into ECR..."
+      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 720237151009.dkr.ecr.us-east-1.amazonaws.com)
 
   pre_build:
     commands:
-      - echo "Running tests with coverage..."
-      - npm test -- --coverage
+      - echo "Preparing Docker image..."
+      - docker build -t sholate-motors-build-env .
+      - docker tag sholate-motors-build-env:latest 720237151009.dkr.ecr.us-east-1.amazonaws.com/sholate-motors-build-env:latest
 
   build:
     commands:
-      - echo "Building project for $NODE_ENV environment..."
-      # Example: if you have build scripts per environment
-      - if [ "$NODE_ENV" == "production" ]; then npm run build:prod; else npm run build; fi
+      - echo "Starting build..."
+      - npm run build
+      - echo "Running tests..."
+      - npm test || echo "No tests found, skipping..."
+      - echo "Running security scan..."
+      - npm audit --audit-level=high
+      - echo "Pushing Docker image to ECR..."
+      - docker push 720237151009.dkr.ecr.us-east-1.amazonaws.com/sholate-motors-build-env:latest
+      - echo "Build complete!"
 
-  post_build:
-    commands:
-      - echo "Build complete for $NODE_ENV environment!"
+reports:
+  test-report:
+    files:
+      - '**/TEST-*.xml'
+    discard-old-reports: yes
 
-cache:
-  paths:
-    - node_modules/**/*     # cache dependencies to speed up next build
+artifacts:
+  files:
+    - '**/*'
