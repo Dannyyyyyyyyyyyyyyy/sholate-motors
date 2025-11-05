@@ -7,7 +7,8 @@
     "start": "node server.js",
     "test": "jest --coverage",
     "build": "echo 'Building development environment...'",
-    "build:prod": "echo 'Building production environment...'"
+    "build:prod": "echo 'Building production environment...'",
+    "shout": "echo Hello World"
   },
   "keywords": [
     "cars",
@@ -19,9 +20,6 @@
   ],
   "author": "Sholate Motors Dev Team",
   "license": "ISC",
-  "dependencies": {
-    "express": "^5.1.0"
-  },
   "devDependencies": {
     "jest": "^29.7.0",
     "supertest": "^7.1.4"
@@ -32,5 +30,9 @@
   },
   "bugs": {
     "url": "https://github.com/Dannyyyyyyyyyyyyyyy/sholate-motors/issues"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
   }
 }
