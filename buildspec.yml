@@ -1,39 +1,56 @@
 version: 0.2
 
+env:
+  # Optional: define environment variables if needed
+  variables:
+    IMAGE_NAME: sholate-motors-build-env
+    ECR_URI: 720237151009.dkr.ecr.us-east-1.amazonaws.com/sholate-motors-build-env
+
 phases:
   install:
     runtime-versions:
       nodejs: 18
     commands:
       - echo "Installing dependencies..."
+      # Upgrade npm to avoid warnings
+      - npm install -g npm@10
       - npm install
       - echo "Logging into ECR..."
-      - $(aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 720237151009.dkr.ecr.us-east-1.amazonaws.com)
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URI
 
   pre_build:
     commands:
       - echo "Preparing Docker image..."
-      - docker build -t sholate-motors-build-env .
-      - docker tag sholate-motors-build-env:latest 720237151009.dkr.ecr.us-east-1.amazonaws.com/sholate-motors-build-env:latest
+      - docker build -t $IMAGE_NAME -f Dockerfile .
+      - docker tag $IMAGE_NAME:latest $ECR_URI:latest
 
   build:
     commands:
-      - echo "Starting build..."
+      - echo "Running build..."
       - npm run build
       - echo "Running tests..."
       - npm test || echo "No tests found, skipping..."
       - echo "Running security scan..."
       - npm audit --audit-level=high
       - echo "Pushing Docker image to ECR..."
-      - docker push 720237151009.dkr.ecr.us-east-1.amazonaws.com/sholate-motors-build-env:latest
+      - docker push $ECR_URI:latest
       - echo "Build complete!"
 
+# Reports for CodeBuild (optional for unit test XML files)
 reports:
   test-report:
     files:
       - '**/TEST-*.xml'
-    discard-old-reports: yes
 
+# Artifacts to save from the build (optional)
 artifacts:
   files:
     - '**/*'
+  base-directory: .  # Use root directory
+  discard-paths: no
+
+# Caching to speed up future builds
+cache:
+  paths:
+    - 'node_modules/**/*'
+    - '/root/.npm/**/*'  # npm cache
