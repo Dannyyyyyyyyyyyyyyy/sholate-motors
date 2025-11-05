@@ -12,12 +12,14 @@ phases:
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URI
 
   pre_build:
-    commands:
-      - echo "Preparing Docker image..."
-      - echo "Listing files in current directory for debug:"
-      - ls -la
-      - docker build -t $IMAGE_NAME -f Dockerfile .
-      - docker tag $IMAGE_NAME:latest $ECR_URI:latest
+  commands:
+    - echo "Preparing Docker image..."
+    - echo "Listing files in current directory for debug:"
+    - ls -la
+    - echo "Building Docker image..."
+    - docker build -t $IMAGE_NAME -f ./Dockerfile .
+    - docker tag $IMAGE_NAME:latest $ECR_URI:latest
+
 
   build:
     commands:
