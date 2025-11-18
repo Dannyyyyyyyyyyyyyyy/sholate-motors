@@ -2,10 +2,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// Use the port provided by Elastic Beanstalk, or fallback to 3000 for local testing
-const PORT = process.env.PORT || 3000;
+// Use port from env variable, fallback to 80
+const PORT = process.env.PORT || 80;
 
-// Serve static files from the 'public' folder
+// Serve static files from 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
@@ -21,10 +21,13 @@ app.get('/inventory', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'inventory.html'));
 });
 
-// ✅ Only start the server if this file is run directly
+// Start server only if run directly
 if (require.main === module) {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  }).on('error', (err) => {
+    console.error('Server failed to start:', err);
+  });
 }
 
-// ✅ Export app for testing
 module.exports = app;
