@@ -1,12 +1,8 @@
 version: 0.0
 os: linux
-
-# Adjust 'source' to match the root folder of your pipeline artifact
-# If pipeline packages everything in a subfolder like 'build', replace '/' with 'build'
 files:
   - source: /
     destination: /home/ec2-user/sholate-motors
-    overwrite: yes   # Ensures old files are replaced
 
 hooks:
   BeforeInstall:
@@ -22,9 +18,4 @@ hooks:
   ApplicationStart:
     - location: scripts/start_server.sh
       timeout: 300
-      runas: ec2-user
-
-  ValidateService:
-    - location: scripts/validate_service.sh
-      timeout: 120
       runas: ec2-user
