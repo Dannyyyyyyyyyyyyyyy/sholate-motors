@@ -3,16 +3,16 @@ os: linux
 
 files:
   - source: /
-    destination: /opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/deployment-archive
+    destination: /home/ec2-user/sholate-motors
 
 hooks:
-  BeforeInstall:
-    - location: scripts/before_install.sh
+  ApplicationStop:
+    - location: scripts/stop_server.sh
       timeout: 300
       runas: ec2-user
 
-  ApplicationStop:
-    - location: scripts/stop_server.sh
+  BeforeInstall:
+    - location: scripts/before_install.sh
       timeout: 300
       runas: ec2-user
 
