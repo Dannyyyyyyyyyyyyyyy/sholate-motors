@@ -6,6 +6,9 @@ echo "==== Starting App ===="
 APP_DIR="/home/ec2-user/sholate-motors"
 cd $APP_DIR
 
+# Install dependencies
+npm install
+
 # Stop previous instance if running
 if pgrep -f "node server.js" > /dev/null; then
     pkill -f "node server.js"
