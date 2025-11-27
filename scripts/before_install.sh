@@ -1,21 +1,20 @@
 #!/bin/bash
 set -e
 
-echo "==== Before Install: Starting ===="
+echo "==== Starting App ===="
 
-# Install Node.js >=18
-curl -fsSL https://rpm.nodesource.com/setup_20.x | sudo bash -
-sudo yum install -y nodejs
+APP_DIR="/home/ec2-user/sholate-motors"
+cd $APP_DIR
 
-echo "Node version: $(node -v)"
-echo "NPM version: $(npm -v)"
+# Install dependencies
+npm install
 
-# Deployment directory (no extra folder)
-DEPLOYMENT_DIR="/opt/codedeploy-agent/deployment-root/$DEPLOYMENT_GROUP_ID/$DEPLOYMENT_ID/deployment-archive"
+# Stop previous instance if running
+if pgrep -f "node server.js" > /dev/null; then
+    pkill -f "node server.js"
+fi
 
-cd "$DEPLOYMENT_DIR" || { echo "Deployment directory $DEPLOYMENT_DIR does not exist"; exit 1; }
+# Start the app
+nohup node server.js > app.log 2>&1 &
 
-# Install npm dependencies
-sudo npm install --unsafe-perm
-
-echo "==== Before Install: Completed ===="
+echo "Server started!"
