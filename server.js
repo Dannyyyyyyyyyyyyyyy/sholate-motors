@@ -15,11 +15,14 @@ app.get('/inventory', (req, res) => res.sendFile(path.join(__dirname, 'public', 
 
 // Only start server if run directly
 if (require.main === module) {
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
-  }).on('error', (err) => {
+  });
+
+  server.on('error', (err) => {
     console.error('Server failed to start:', err);
   });
 }
+
 
 module.exports = app;
